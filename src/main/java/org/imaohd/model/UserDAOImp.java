@@ -133,10 +133,10 @@ public class UserDAOImp implements UserDAO {
         String cellPhone = resultSet.getString("cellphone");
 
         // Convertir de Timestamp a LocalDateTime
-        String fechaStr = resultSet.getString("register_date");
+        String stringDate = resultSet.getString("register_date");
         LocalDateTime registerDate;
-        if (fechaStr != null) {
-            registerDate = LocalDateTime.parse(fechaStr.replace(" ", "T"));
+        if (stringDate != null) {
+            registerDate = LocalDateTime.parse(stringDate.replace(" ", "T"));
         } else {
             registerDate = LocalDateTime.now();
         }

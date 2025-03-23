@@ -1,16 +1,16 @@
 package org.imaohd.controller;
 
 import org.imaohd.model.User;
-import org.imaohd.model.UserDAO;
+import org.imaohd.model.UserDAOImp;
 import org.imaohd.view.UserView;
 
 import java.util.List;
 
 public class UserController {
-    private UserDAO userDAO;
-    private UserView userView;
+    private final UserDAOImp userDAO;
+    private final UserView userView;
 
-    public UserController(UserDAO userDAO, UserView userView) {
+    public UserController(UserDAOImp userDAO, UserView userView) {
         this.userDAO = userDAO;
         this.userView = userView;
     }
