@@ -12,15 +12,16 @@ public class UserDAOImp implements UserDAO {
     @Override
     public boolean create(User user) {
 
-        String sql = "INSERT INTO users (name, lastname, email, cellphone) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO users (name, lastname, age, email, cellphone) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, user.getName());
             statement.setString(2, user.getLastname());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getCellPhone());
+            statement.setInt(3, user.getAge());
+            statement.setString(4, user.getEmail());
+            statement.setString(5, user.getCellPhone());
 
             int affectedRows = statement.executeUpdate();
             if (affectedRows > 0) {
@@ -85,16 +86,17 @@ public class UserDAOImp implements UserDAO {
 
     @Override
     public boolean update(User user) {
-        String sql = "UPDATE users SET name = ?, lastname = ?, email = ?, cellphone = ? WHERE id = ?";
+        String sql = "UPDATE users SET name = ?, lastname = ?, age = ?, email = ?, cellphone = ? WHERE id = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, user.getName());
             statement.setString(2, user.getLastname());
-            statement.setString(3, user.getEmail());
-            statement.setString(4, user.getCellPhone());
-            statement.setInt(5, user.getId());
+            statement.setInt(3, user.getAge());
+            statement.setString(4, user.getEmail());
+            statement.setString(5, user.getCellPhone());
+            statement.setInt(6, user.getId());
 
             int affectedRows = statement.executeUpdate();
 
@@ -129,6 +131,7 @@ public class UserDAOImp implements UserDAO {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
         String lastname = resultSet.getString("lastname");
+        int age = resultSet.getInt("age");
         String email = resultSet.getString("email");
         String cellPhone = resultSet.getString("cellphone");
 
@@ -141,6 +144,6 @@ public class UserDAOImp implements UserDAO {
             registerDate = LocalDateTime.now();
         }
 
-        return new User(id, name, lastname, email, cellPhone, registerDate);
+        return new User(id, name, lastname, age, email, cellPhone, registerDate);
     }
 }

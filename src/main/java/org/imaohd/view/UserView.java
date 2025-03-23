@@ -34,14 +34,15 @@ public class UserView {
             return;
         }
 
-        System.out.printf("%-5s %-15s %-15s %-25s %-15s\n", "ID", "NOMBRE", "APELLIDO", "EMAIL", "TELÉFONO");
+        System.out.printf("%-5s %-15s %-15s %-15s %-25s %-15s\n", "ID", "NOMBRE", "APELLIDO", "EDAD",  "EMAIL", "TELÉFONO");
         System.out.println("---------------------------------------------------------------------------------------------");
 
         for (User user : users) {
-            System.out.printf("%-5d %-15s %-15s %-25s %-15s\n",
+            System.out.printf("%-5d %-15s %-15s %-15s %-25s %-15s\n",
                     user.getId(),
                     user.getName(),
                     user.getLastname(),
+                    user.getAge(),
                     user.getEmail(),
                     user.getCellPhone());
         }
@@ -64,18 +65,21 @@ public class UserView {
         System.out.println("\n===== CREAR NUEVO USUARIO =====");
 
         System.out.print("Nombre: ");
-        String nombre = scanner.nextLine();
+        String name = scanner.nextLine();
 
         System.out.print("Apellido: ");
-        String apellido = scanner.nextLine();
+        String lastName = scanner.nextLine();
+
+        System.out.print("Edad: ");
+        String age = scanner.nextLine();
 
         System.out.print("Email: ");
         String email = scanner.nextLine();
 
         System.out.print("Teléfono: ");
-        String telefono = scanner.nextLine();
+        String cellPhone = scanner.nextLine();
 
-        return new User(nombre, apellido, email, telefono);
+        return new User(name, lastName, Integer.parseInt(age), email, cellPhone);
     }
 
     public User updateUserData(User currentUser){
@@ -87,15 +91,22 @@ public class UserView {
         System.out.println("\nIntroduzca los nuevos datos (dejar en blanco para mantener el valor actual):");
 
         System.out.print("Nombre [" + currentUser.getName() + "]: ");
-        String nombre = scanner.nextLine();
-        if (!nombre.isEmpty()) {
-            currentUser.setName(nombre);
+        String name = scanner.nextLine();
+        if (!name.isEmpty()) {
+            currentUser.setName(name);
         }
 
         System.out.print("Apellido [" + currentUser.getLastname() + "]: ");
-        String apellido = scanner.nextLine();
-        if (!apellido.isEmpty()) {
-            currentUser.setLastname(apellido);
+        String lastName = scanner.nextLine();
+        if (!lastName.isEmpty()) {
+            currentUser.setLastname(lastName);
+        }
+
+        System.out.print("Edad [" + currentUser.getAge() + "]: ");
+        String ageInput = scanner.nextLine();
+        if (!ageInput.isEmpty()) {
+            int age = Integer.parseInt(ageInput);
+            currentUser.setAge(age);
         }
 
         System.out.print("Email [" + currentUser.getEmail() + "]: ");
@@ -105,16 +116,16 @@ public class UserView {
         }
 
         System.out.print("Teléfono [" + currentUser.getCellPhone() + "]: ");
-        String telefono = scanner.nextLine();
-        if (!telefono.isEmpty()) {
-            currentUser.setCellPhone(telefono);
+        String cellPhone = scanner.nextLine();
+        if (!cellPhone.isEmpty()) {
+            currentUser.setCellPhone(cellPhone);
         }
 
         return currentUser;
     }
 
-    public int getUserId(String operacion) {
-        System.out.print("\nIntroduzca el ID del usuario para " + operacion + ": ");
+    public int getUserId(String action) {
+        System.out.print("\nIntroduzca el ID del usuario para " + action + ": ");
         return scanner.nextInt();
     }
 

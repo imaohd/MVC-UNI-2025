@@ -22,6 +22,7 @@ public class DatabaseConnection {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "name TEXT NOT NULL," +
                 "lastname TEXT NOT NULL," +
+                "age INTEGER NOT NULL," +
                 "email TEXT NOT NULL," +
                 "cellphone TEXT," +
                 "register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +

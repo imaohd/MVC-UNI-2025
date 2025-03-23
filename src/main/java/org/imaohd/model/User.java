@@ -6,6 +6,7 @@ public class User {
     private int id;
     private String name;
     private String lastname;
+    private int age;
     private String email;
     private String cellPhone;
     private LocalDateTime registerDate;
@@ -14,18 +15,20 @@ public class User {
         this.registerDate = LocalDateTime.now();
     }
 
-    public User(String name, String lastname, String email, String cellPhone) {
+    public User(String name, String lastname, int age, String email, String cellPhone) {
         this.name = name;
         this.lastname = lastname;
+        this.age = age;
         this.email = email;
         this.cellPhone = cellPhone;
         this.registerDate = LocalDateTime.now();
     }
 
-    public User(int id, String name, String lastname, String email, String cellPhone, LocalDateTime registerDate) {
+    public User(int id, String name, String lastname, int age, String email, String cellPhone, LocalDateTime registerDate) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
+        this.age = age;
         this.email = email;
         this.cellPhone = cellPhone;
         this.registerDate = registerDate;
@@ -53,6 +56,14 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getEmail() {
